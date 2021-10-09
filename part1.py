@@ -17,17 +17,31 @@ Original file is located at
 ################################################################################
 
 
-# importing module for work/manage files/data
-import pandas as pd
+import pandas as pd #module for files and data
+import os #this module works with files
 
-#variable for change name of the file to read
-filename = "/uk_glx_open_retail_points_v20_202104.csv"
 
+#validate user input. filename is the variable for name of the file
+while (os.path.isfile("/uk_glx_open_retail_points_v20_202104.csv")):
+    filename = (input('File should be readable by a computer: '))
+    if filename == "/uk_glx_open_retail_points_v20_202104.csv":
+        print("\n\n\n Well done!\n\n")
+        break
+    print('Try again')
 
 # read specific columns of csv file using Pandas
 df = pd.read_csv(filename, usecols = ['long_wgs','lat_wgs'])
 print(df)
 
+#calculation for total number of rows/records
+num_lines = -1 #first line is name of the columns
+with open(filename, 'r') as f:
+    for line in f:
+        num_lines += 1
+print("Number of lines:\n", num_lines)
+
+
 #selecting one row randomly (2 values from same row)
 random_row = df.sample()
-print(random_row) #dispaying selection
+print("\nHere the lucky selection:")
+print(random_row)
