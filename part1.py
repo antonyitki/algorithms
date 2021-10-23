@@ -29,9 +29,11 @@ while (os.path.isfile("/uk_glx_open_retail_points_v20_202104.csv")):
         break
     print('Try again')
 
+
 # read specific columns of csv file using Pandas
 df = pd.read_csv(filename, usecols = ['long_wgs','lat_wgs'])
 print(df)
+
 
 #calculation for total number of rows/records
 num_lines = -1 #first line is name of the columns
@@ -45,3 +47,14 @@ print("Number of lines:\n", num_lines)
 random_row = df.sample()
 print("\nHere the lucky selection:")
 print(random_row)
+
+
+################################################################################
+#                                                                              #
+# * Language Python 3.                                                         # 
+# * File needs to be accessible. And be careful with / and \ for directories   # 
+# * Used colab.research.google.com                                             #     
+# * Copy avaiable on Github:                                                   #
+#             https://github.com/antonyitki/algorithms/blob/main/part1.py      #     
+#                                                                              # 
+################################################################################
