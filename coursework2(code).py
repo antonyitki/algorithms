@@ -14,7 +14,11 @@ Original file is located at
 # Module: Algorithms                                                           #
 # Coursework part 2 (20% value). Weeks 4 -6. Date: Monday, 15 November 2021.   #
 #                                                                              #
-#         HASH TABLE, MAP, HASHING FUNCTION, STORING, COLLISSIONS...           #
+#                                                                              # 
+#        HASH TABLE, MAP, HASHING FUNCTION, STORING, COLLISSIONS...            #
+#                                                                              #
+#              https://github.com/antonyitki/algorithms                        #
+#                                                                              #
 ################################################################################
 
 
@@ -38,16 +42,16 @@ for index, row in file.iterrows():
     value_in_ht.append(row.postcode)
     print(row.retailer, ", ", row.postcode, " ===>>> ", row.store_name, ", ", 
           row.town, row.postcode, ", ",row.size_band, ", ", row.add_one)
-print(hashed_key)
-print(value_in_ht)
 
 
 hashTableRetailer = dict(zip(hashed_key, value_in_ht))
 print(hashTableRetailer)
-searchValue = input("Name of the Store, please:")
 #searchValue = "Spar"
-searchValue = input("Postcode of the Store, please:")
-searchValueHashed = hashF(searchValue)
-print(print(row.retailer, ", ", row.postcode, " ===>>> ", row.store_name, ", ", 
-          row.town, row.postcode, ", ",row.size_band, ", ", row.add_one))
+searchValue_name = input("Name of the Store, please:")
+searchValueHashed = hashF(searchValue_name)
+searchValue_postcode = input("Postcode of the Store, please:")
+if searchValue_postcode == searchValueHashed:
+    print (searchValueHashed)
+print(row.retailer, ", ", row.postcode, " ===>>> ", row.store_name, ", ", 
+          row.town, row.postcode, ", ",row.size_band, ", ", row.add_one)
 print(hashTableRetailer.get(searchValueHashed))
