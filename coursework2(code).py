@@ -23,35 +23,57 @@ Original file is located at
 
 
 import pandas as pd
+
+#read file in colab.research.google.com style (next line)
 file = pd.read_csv("/uk_glx_open_retail_points_v20_202104.csv")
 def hashF(key):
     P = 1024
     hashVal = 0
     for i in key:
-        hashVal = int((127 * hashVal + ord(i)) % P)
+        hashVal = int((2048 * hashVal + ord(i)) % P)
     return hashVal
 for i in file.retailer:
        if file.postcode[0] != file.postcode[1]:
-        print(i,hashF(i))
+        print(i,hashF(i)) #retailer and hash key (value)
 
 
-hashed_key = []
-value_in_ht = []
+hashed_key = [] #initialization to value empty dictionary
+value_in_ht = [] #initialization to value empty dictionary
 for index, row in file.iterrows():
     hashed_key.append(hashF(row.retailer))
     value_in_ht.append(row.postcode)
+    #printing on screen ALL rows only with desired information
     print(row.retailer, ", ", row.postcode, " ===>>> ", row.store_name, ", ", 
           row.town, row.postcode, ", ",row.size_band, ", ", row.add_one)
+print(hashed_key)
+print(value_in_ht)
 
-
+#retailer + postcode input = specific information
 hashTableRetailer = dict(zip(hashed_key, value_in_ht))
 print(hashTableRetailer)
-#searchValue = "Spar"
-searchValue_name = input("Name of the Store, please:")
-searchValueHashed = hashF(searchValue_name)
-searchValue_postcode = input("Postcode of the Store, please:")
-if searchValue_postcode == searchValueHashed:
-    print (searchValueHashed)
+searchValue = input("Name of the Store, please:") #key1
+
+#while True:
+#    searchValue = input('Name of the Store, please:')
+#    if searchValue not in [value_in_ht.retailer]:
+#        print('Enter name only')
+#    else:
+#        break
+
+searchValue = input("Postcode of the Store, please:") #key2
+
+#isLongEnough = False
+#while not isLongEnough:
+#    password = input('Enter password at least 5 characters: ')
+#    if (len(password) >= 5 && len(password) >= 8) :
+#        isLongEnough = True
+#    else:
+#        print('Password entered is too short')
+#print('Your password entered is: ' + password)
+#Reference: http://www.easypythondocs.com/validation.html
+
+searchValueHashed = hashF(searchValue)
 print(row.retailer, ", ", row.postcode, " ===>>> ", row.store_name, ", ", 
           row.town, row.postcode, ", ",row.size_band, ", ", row.add_one)
+#printing all desired information for specific key1 and key2
 print(hashTableRetailer.get(searchValueHashed))
